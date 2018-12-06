@@ -220,7 +220,8 @@ First we dump the model and the encoders to disk. Then we register both models w
 Navigate to the machine learning workspace on the Azure Portal and explore the models to see what was stored.
 
 ## Summary
-This concludes the second lab of the workshop. In this lab you've learned how to track metrics with experiments
+This concludes the second lab of the workshop. In this lab you've seen how to use scikit-learn and pandas to build
+a machine learning model. In this lab you've also learned how to track metrics with experiments
 and discovered how to register models with the machine learning workspace.
 
 In the next lab we will explore how to deploy your model on Azure. [Continue to lab 3](../lab3/README.md).
