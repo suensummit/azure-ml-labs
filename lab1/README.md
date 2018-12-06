@@ -96,6 +96,8 @@ from azureml.core import Workspace
 ws = Workspace.from_config()
 ```
 
+Execute the cell by pressing <kbd>Ctrl></kbd>+<kbd>Enter</kbd>.
+
 ![Grant access to your credentials](./images/grant_access.jpg)
 
 The notebook will ask you to grant access to your Azure credentials. Confirm
