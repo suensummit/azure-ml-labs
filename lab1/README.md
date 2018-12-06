@@ -32,7 +32,7 @@ Once the deployment is completed, navigate to your newly created workspace. We'r
 going to create a new configuration file that we will use later to connect to the machine
 learning workspace.
 
-![Resource details](./images/resource_details.jpg)
+![Resource details](./images/resource_properties.jpg)
 
 Create a new file `config.json` with the following content:
 
