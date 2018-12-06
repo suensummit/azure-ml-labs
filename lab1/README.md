@@ -108,4 +108,13 @@ Found the config file in: /home/nbuser/library/config.json
 ```
 
 This means the connection is now made and you're ready to move on to the next
-lab! [Start working on lab 2](../lab2/README.md)
+lab!
+
+## Summary
+In this lab we learned how to set up a new workspace on the Azure Management Portal.
+We've also looked at how to configure a connection to the machine learning workspace.
+Finally we've created a new Azure Notebook in preparation of our new experiment.
+
+Feel free to look around the newly created machine learning workspace.
+
+When you're done you can [start working on lab 2](../lab2/README.md).
