@@ -116,7 +116,47 @@ We then create a new service based on our configuration.
 **Note** this step takes approximately 6-8 minutes!
 
 ## Step 4: Use the webservice
-TODO: Include instructions to invoke the service using powershell.
+The final step is to use the model in an application. For this lab we've created a sample request 
+using the `requests` library in Python. Add a new cell with the following code to your notebook:
+
+```
+url = service.scoring_uri
+request_payload = [{
+    'gender': 'Female', 
+    'SeniorCitizen' : 0, 
+    'Partner': 'No', 
+    'Dependents': 'No', 
+    'tenure': 9,
+    'PhoneService': 'Yes', 
+    'MultipleLines': 'No', 
+    'InternetService': 'No', 
+    'OnlineSecurity': 'No internet service',
+    'OnlineBackup': 'No internet service', 
+    'DeviceProtection': 'No internet service', 
+    'TechSupport': 'No internet service', 
+    'StreamingTV': 'No internet service',
+    'StreamingMovies': 'No internet service', 
+    'Contract': 'Month-to-month', 
+    'PaperlessBilling': 'No', 
+    'PaymentMethod': 'Mailed check',
+    'MonthlyCharges': 20.25, 
+    'TotalCharges': 186.15
+}]
+
+import requests
+
+response = requests.post(url=url, json=request_payload)
+response.content
+```
+
+Execute the cell by pressing <kbd>Ctrl</kbd>+<kbd>Enter</kbd>. 
+
+This will build a request payload with the properties of a single customer.
+The service expects an array of customers, so we created a list with a single record to match this.
+
+We then execute a POST request against the service with a JSON payload.
+The output generated is a JSON structure with the likelihood that a customer
+is going to unsubscribe.
 
 ## Summary
 In this lab you've learned how to use your model in a production environment using Azure Container Services.
