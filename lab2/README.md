@@ -151,20 +151,29 @@ to a new cell in your notebook:
 
 ```
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.externals import joblib
 
 n_estimators = 25
-
 classifier = RandomForestClassifier(n_estimators=n_estimators)
+
 run = experiment.start_logging()
 
-classifier.fit(X_train, y_train)
-
-accuracy = classifier.score(X_test, y_test)
+model = classifier.fit(X_train, y_train)
+accuracy = model.score(X_test, y_test)
 
 run.log('training samples', X_train.shape[0])
 run.log('validation samples', X_test.shape[0])
 run.log('accuracy', accuracy)
 run.log('estimators', n_estimators)
+
+with open('outputs/model.pkl', 'wb') as model_file:
+    joblib.dump(classifier, model_file)
+    
+with open('outputs/encoders.pkl', 'wb') as encoders_file:
+    joblib.dump(encoders, encoders_file)
+
+run.upload_file('model.pkl', 'outputs/model.pkl')
+run.upload_file('encoders.pkl', 'outputs/encoders.pkl')
 
 run.complete()
 ```
@@ -179,7 +188,8 @@ First we invoke `fit` on the classifier to train it on the training set.
 
 When we've trained the model, we can score it using the test set.
 
-At the end of the run we record the settings and metrics of the model and complete the run.
+At the end of the run we record the settings and metrics of the model. We also store our models on 
+disk and upload them to the machine learning workspace. After that we complete the run.
 
 ## Step 4: Visualize the run results
 You can visualize run details in your Azure Notebook using a specialized set of widgets.
@@ -202,14 +212,6 @@ If you're happy with your model you can register it in the workspace so you can 
 Add a new cell to your notebook and include the following code:
 
 ```
-from joblib import dump
-
-with open('model.pkl', 'wb') as model_file:
-    dump(classifier, model_file)
-    
-with open('encoders.pkl', 'wb') as encoders_file:
-    dump(encoders, encoders_file)
-    
 stored_model = run.register_model(model_name='customer_churn', model_path='model.pkl')
 stored_encoders = run.register_model(model_name='customer_churn_encoders', model_path='encoders.pkl')
 ```
